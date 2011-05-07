@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test-2-intro
+Bundle-SymbolicName: test-2-intro; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: test_2_intro.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.intro,
+ org.eclipse.ui.forms,
+ org.eclipse.swt
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
