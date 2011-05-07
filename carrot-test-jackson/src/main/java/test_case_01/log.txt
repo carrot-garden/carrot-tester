@@ -1,0 +1,16 @@
+started
+19:31:35.721 [main] ERROR test_case_01.J -
+org.codehaus.jackson.map.JsonMappingException: No serializer found for class test_case_01.provider.IceImpl2 and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS) ) (through reference chain: test_case_01.Container["ice"])
+	at org.codehaus.jackson.map.ser.StdSerializerProvider$1.failForEmpty(StdSerializerProvider.java:90) ~[jackson-mapper-asl-1.7.4.jar:1.7.4]
+	at org.codehaus.jackson.map.ser.StdSerializerProvider$1.serialize(StdSerializerProvider.java:63) ~[jackson-mapper-asl-1.7.4.jar:1.7.4]
+	at org.codehaus.jackson.map.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:428) ~[jackson-mapper-asl-1.7.4.jar:1.7.4]
+	at org.codehaus.jackson.map.ser.BeanSerializer.serializeFields(BeanSerializer.java:245) ~[jackson-mapper-asl-1.7.4.jar:1.7.4]
+	at org.codehaus.jackson.map.ser.BeanSerializer.serialize(BeanSerializer.java:212) ~[jackson-mapper-asl-1.7.4.jar:1.7.4]
+	at org.codehaus.jackson.map.ser.StdSerializerProvider._serializeValue(StdSerializerProvider.java:587) ~[jackson-mapper-asl-1.7.4.jar:1.7.4]
+	at org.codehaus.jackson.map.ser.StdSerializerProvider.serializeValue(StdSerializerProvider.java:245) ~[jackson-mapper-asl-1.7.4.jar:1.7.4]
+	at org.codehaus.jackson.map.ObjectMapper._configAndWriteValue(ObjectMapper.java:1993) ~[jackson-mapper-asl-1.7.4.jar:1.7.4]
+	at org.codehaus.jackson.map.ObjectMapper.writeValueAsString(ObjectMapper.java:1595) ~[jackson-mapper-asl-1.7.4.jar:1.7.4]
+	at test_case_01.J.intoText(J.java:77) ~[classes/:na]
+	at test_case_01.Main.main(Main.java:37) [classes/:na]
+json=null
+finished

@@ -1,0 +1,76 @@
+
+
+### install jenkins on your amazon "workstation"
+
+http://pkg.jenkins-ci.org/debian/
+
+wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+
+/etc/apt/sources.list
+deb http://pkg.jenkins-ci.org/debian binary/
+
+sudo apt-get update
+sudo apt-get install jenkins
+
+
+
+### install & configure jenkins plugin in your jenkins
+
+https://wiki.jenkins-ci.org/display/JENKINS/Amazon+EC2+Plugin
+
+select instance
+http://alestic.com/
+amazon / us-east-1 / Ubuntu 10.04 LTS Lucid / instance-store / server 32-bit
+
+http://localhost:8080/configure
+
+Region US East = Virginia
+Access Key ID = XXX
+Secret Access Key = XXX
+EC2 RSA Private Key = XXX
+AMI ID = ami-3e02f257
+Instance Type = default
+Description = amazon / us-east-1 / Ubuntu 10.04 LTS Lucid / instance-store / server 32-bit
+Remote FS root = /var/jenkins
+Remote user = ubuntu
+Labels = amazon
+Init Script = https://issues.jenkins-ci.org/browse/JENKINS-6919
+Number of Executors = 1
+Root command prefix = sudo
+Remote ssh port = 22
+
+
+
+### create named java and maven installations
+
+JDK installations
+Name = java
+Install automatically = true
+Version = latest
+I agree to the Java SE Development Kit License Agreement = true
+
+Maven installations
+Name = maven
+Install automatically = true
+Version = latest
+
+
+
+### create new job
+Job name = test-hazelcast-ec2
+Build a free-style software project = true
+
+Restrict where this project can be run = true
+Label Expression = amazon
+
+Source Code Management = Subversion
+Repository URL = https://carrotgarden.googlecode.com/svn/trunk/test-hazelcast-ec2
+Local module directory = .
+
+Build = Invoke top-level Maven targets
+Maven Version = maven
+Goals = test
+
+Discard Old Builds = true
+Max # of builds to keep = 3
+
