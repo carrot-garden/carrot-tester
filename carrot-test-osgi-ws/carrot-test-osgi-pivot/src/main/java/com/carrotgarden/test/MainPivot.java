@@ -17,7 +17,29 @@ import org.osgi.framework.launch.FrameworkFactory;
 
 public class MainPivot implements Application {
 
-	public static void initOsgi() {
+	private Window window;
+	private Framework framework;
+
+	/*
+	 * http://download.oracle.com/javase/1.5.0/docs/guide/deployment/deployment-
+	 * guide/properties.html
+	 */
+	private String getStorageLocation() {
+
+		String jnlpDir = System.getProperty("deployment.user.cachedir");
+
+		if (jnlpDir == null) {
+			// testing
+			return "./target/storage";
+		} else {
+			// release
+			String folder = this.getClass().getPackage().getName();
+			return jnlpDir + "/" + folder;
+		}
+
+	}
+
+	private void initOsgi() {
 
 		try {
 
@@ -28,10 +50,11 @@ public class MainPivot implements Application {
 
 			Map<String, Object> config = new HashMap<String, Object>();
 
-			config.put(Constants.FRAMEWORK_STORAGE, "./target/storage");
+			config.put(Constants.FRAMEWORK_STORAGE, getStorageLocation());
 
-			Framework framework = factory.newFramework(config);
+			framework = factory.newFramework(config);
 
+			System.out.println("### osgi start");
 			framework.start();
 
 			BundleContext context = framework.getBundleContext();
@@ -42,6 +65,7 @@ public class MainPivot implements Application {
 			bundle.start();
 
 			framework.waitForStop(0);
+			System.out.println("### osgi stop");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,18 +75,18 @@ public class MainPivot implements Application {
 
 	public static void main(String... args) {
 
-		String[] list = new String[] { MainPivot.class.getName() };
+		String[] array = new String[] { MainPivot.class.getName() };
 
-		DesktopApplicationContext.main(list);
+		DesktopApplicationContext.main(array);
 
 	}
-
-	private Window window;
 
 	@Override
 	public void startup(Display display,
 			org.apache.pivot.collections.Map<String, String> properties)
 			throws Exception {
+
+		System.out.println("### startup");
 
 		BXMLSerializer bxmlSerializer = new BXMLSerializer();
 
@@ -71,13 +95,30 @@ public class MainPivot implements Application {
 
 		window.open(display);
 
+		Runnable osgiTask = new Runnable() {
+			@Override
+			public void run() {
+				initOsgi();
+			}
+		};
+
+		new Thread(osgiTask, "# osgi thread").start();
+
 	}
 
 	@Override
 	public boolean shutdown(boolean optional) throws Exception {
 
+		System.out.println("### shutdown");
+
+		if (framework != null) {
+			framework.stop();
+			framework = null;
+		}
+
 		if (window != null) {
 			window.close();
+			window = null;
 		}
 
 		return false;
@@ -86,13 +127,15 @@ public class MainPivot implements Application {
 
 	@Override
 	public void suspend() throws Exception {
-		// TODO Auto-generated method stub
+
+		System.out.println("### suspend");
 
 	}
 
 	@Override
 	public void resume() throws Exception {
-		// TODO Auto-generated method stub
+
+		System.out.println("### resume");
 
 	}
 
