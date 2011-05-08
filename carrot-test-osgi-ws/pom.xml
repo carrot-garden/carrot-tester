@@ -10,10 +10,13 @@
 	</parent>
 
 	<artifactId>carrot-test-osgi-ws</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>carrot-test-osgi-pivot</module>
+		<module>carrot-test-osgi-pivot-api</module>
+		<module>carrot-test-osgi-pivot-core</module>
+		<module>carrot-test-osgi-pivot-host</module>
 		<module>carrot-test-osgi-pivot-app</module>
 	</modules>
 

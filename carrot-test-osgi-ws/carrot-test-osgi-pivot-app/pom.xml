@@ -15,7 +15,7 @@
 
 		<dependency>
 			<groupId>com.carrotgarden</groupId>
-			<artifactId>carrot-test-osgi-pivot</artifactId>
+			<artifactId>carrot-test-osgi-pivot-host</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
@@ -27,7 +27,7 @@
 		<tomcatContext>webstart-test-osgi-jnlp</tomcatContext>
 
 		<!-- application; comes from dependency above -->
-		<pivotClass>com.carrotgarden.test.MainPivot</pivotClass>
+		<pivotClass>com.carrotgarden.osgi_host.MainPivot</pivotClass>
 
 		<!-- used by applet launcher -->
 		<mainClassApplet>org.apache.pivot.wtk.BrowserApplicationContext$HostApplet</mainClassApplet>

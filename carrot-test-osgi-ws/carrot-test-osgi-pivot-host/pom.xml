@@ -9,7 +9,7 @@
 		<version>1.0.20-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>carrot-test-osgi-pivot</artifactId>
+	<artifactId>carrot-test-osgi-pivot-host</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 
@@ -25,6 +25,18 @@
 			<groupId>org.apache.felix</groupId>
 			<artifactId>org.apache.felix.framework</artifactId>
 			<version>3.2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.carrotgarden</groupId>
+			<artifactId>carrot-test-osgi-pivot-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>0.9.28</version>
 		</dependency>
 
 		<!-- -->
@@ -43,23 +55,29 @@
 
 		<dependency>
 			<groupId>org.apache.pivot</groupId>
-			<artifactId>pivot-web</artifactId>
-			<version>${pivotVersion}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.pivot</groupId>
 			<artifactId>pivot-wtk-terra</artifactId>
 			<version>${pivotVersion}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.pivot</groupId>
-			<artifactId>pivot-charts</artifactId>
-			<version>${pivotVersion}</version>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.pivot</groupId> -->
+		<!-- <artifactId>pivot-web</artifactId> -->
+		<!-- <version>${pivotVersion}</version> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.pivot</groupId> -->
+		<!-- <artifactId>pivot-charts</artifactId> -->
+		<!-- <version>${pivotVersion}</version> -->
+		<!-- </dependency> -->
 
 		<!-- -->
+
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.scr.annotations</artifactId>
+			<optional>true</optional>
+		</dependency>
 
 	</dependencies>
 
@@ -97,6 +115,12 @@
 			<!-- </execution> -->
 			<!-- </executions> -->
 			<!-- </plugin> -->
+
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-scr-plugin</artifactId>
+			</plugin>
 
 		</plugins>
 
