@@ -14,13 +14,19 @@ import org.apache.pivot.wtk.Window;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
+import org.osgi.framework.ServiceReference;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
+import org.osgi.service.event.EventAdmin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.carrotgarden.api.HostService;
 import com.carrotgarden.impl.HostServiceImpl;
 
 public class MainPivot implements Application {
+
+	private final static Logger log = LoggerFactory.getLogger(MainPivot.class);
 
 	private Window window;
 	private Framework framework;
@@ -44,7 +50,9 @@ public class MainPivot implements Application {
 
 	}
 
-	private String getExtraExport() {
+	private String getPackagesExport() {
+		// String export =
+		// "com.carrotgarden.api,org.slf4j;version=1.6.1,org.slf4j.impl;version=1.6.1,org.osgi.service.event";
 		String export = "com.carrotgarden.api,org.slf4j;version=1.6.1,org.slf4j.impl;version=1.6.1";
 		return export;
 	}
@@ -65,7 +73,7 @@ public class MainPivot implements Application {
 
 		config.put(Constants.FRAMEWORK_STORAGE, getStorageLocation());
 
-		config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA, getExtraExport());
+		config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA, getPackagesExport());
 
 		framework = factory.newFramework(config);
 
@@ -75,14 +83,17 @@ public class MainPivot implements Application {
 
 		List<String> urls = new LinkedList<String>();
 
-		// urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.gogo.runtime-0.8.0.jar");
-		// urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.gogo.shell-0.8.0.jar");
-		// urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.gogo.command-0.8.0.jar");
+		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.gogo.runtime-0.8.0.jar");
+		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.gogo.shell-0.8.0.jar");
+		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.gogo.command-0.8.0.jar");
+
+		// urls.add("http://search.maven.org/remotecontent?filepath=org/ops4j/pax/url/pax-url-aether/1.3.2/pax-url-aether-1.3.2.jar");
 
 		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.configadmin-1.2.8.jar");
 		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.scr-1.6.0.jar");
+		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.eventadmin-1.2.10.jar");
 
-		urls.add("https://oss.sonatype.org/content/repositories/snapshots/com/carrotgarden/carrot-test-osgi-pivot-core/1.0.0-SNAPSHOT/carrot-test-osgi-pivot-core-1.0.0-20110508.055739-6.jar");
+		urls.add("https://oss.sonatype.org/content/repositories/snapshots/com/carrotgarden/carrot-test-osgi-pivot-core/1.0.0-SNAPSHOT/carrot-test-osgi-pivot-core-1.0.0-20110508.200318-9.jar");
 
 		// urls.add("http://www.eclipsezone.com/files/jsig/bundles/HelloWorld.jar");
 
@@ -102,6 +113,11 @@ public class MainPivot implements Application {
 		for (Bundle bundle : bundles) {
 			bundle.start();
 		}
+
+		ServiceReference eventAdminRef = context
+				.getServiceReference(EventAdmin.class.getName());
+		EventAdmin eventAdmin = (EventAdmin) context.getService(eventAdminRef);
+		log.info("eventAdmin: {}", eventAdmin);
 
 	}
 

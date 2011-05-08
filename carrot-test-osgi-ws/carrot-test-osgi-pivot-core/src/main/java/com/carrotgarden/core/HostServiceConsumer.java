@@ -7,6 +7,7 @@ import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Deactivate;
 import org.apache.felix.scr.annotations.Modified;
 import org.apache.felix.scr.annotations.Reference;
+import org.osgi.service.event.EventAdmin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,22 +24,16 @@ public class HostServiceConsumer {
 	}
 
 	@Reference
-	private HostService service;
+	private HostService hostService;
 
-	protected void bind(HostService service, Map<String, String> config) {
-		this.service = service;
-	}
-
-	protected void unbind(HostService service, Map<String, String> config) {
-		if (this.service == service) {
-			service = null;
-		}
-	}
+	@Reference
+	private EventAdmin eventAdmin;
 
 	@Activate
 	protected void activate(Map<String, String> config) {
 		log.info("ACTIVATE");
-		log.info("service.lookup() : {}", service.lookup());
+		log.info("hostService.lookup() : {}", hostService.lookup());
+		log.info("eventAdmin : {}", eventAdmin);
 	}
 
 	@Deactivate
