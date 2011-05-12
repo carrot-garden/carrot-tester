@@ -14,10 +14,8 @@ import org.apache.pivot.wtk.Window;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
-import org.osgi.framework.ServiceReference;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
-import org.osgi.service.event.EventAdmin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,7 +71,8 @@ public class MainPivot implements Application {
 
 		config.put(Constants.FRAMEWORK_STORAGE, getStorageLocation());
 
-		config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA, getPackagesExport());
+		config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA,
+				getPackagesExport());
 
 		framework = factory.newFramework(config);
 
@@ -81,7 +80,7 @@ public class MainPivot implements Application {
 
 		BundleContext context = framework.getBundleContext();
 
-		List<String> urls = new LinkedList<String>();
+		List<String> urls = new LinkedList<String>(); // /
 
 		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.gogo.runtime-0.8.0.jar");
 		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.gogo.shell-0.8.0.jar");
@@ -93,9 +92,12 @@ public class MainPivot implements Application {
 		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.scr-1.6.0.jar");
 		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.eventadmin-1.2.10.jar");
 
-		urls.add("https://oss.sonatype.org/content/repositories/snapshots/com/carrotgarden/carrot-test-osgi-pivot-core/1.0.0-SNAPSHOT/carrot-test-osgi-pivot-core-1.0.0-20110508.200318-9.jar");
+		// urls.add("https://oss.sonatype.org/content/repositories/snapshots/com/carrotgarden/carrot-test-osgi-pivot-core/1.0.0-SNAPSHOT/carrot-test-osgi-pivot-core-1.0.0-20110508.200318-9.jar");
+		urls.add("reference:file:../carrot-test-osgi-pivot-core/target/classes");
 
 		// urls.add("http://www.eclipsezone.com/files/jsig/bundles/HelloWorld.jar");
+
+		// //////
 
 		context.registerService(HostService.class.getName(),
 				new HostServiceImpl(), null);
@@ -114,10 +116,11 @@ public class MainPivot implements Application {
 			bundle.start();
 		}
 
-		ServiceReference eventAdminRef = context
-				.getServiceReference(EventAdmin.class.getName());
-		EventAdmin eventAdmin = (EventAdmin) context.getService(eventAdminRef);
-		log.info("eventAdmin: {}", eventAdmin);
+		// ServiceReference eventAdminRef = context
+		// .getServiceReference(EventAdmin.class.getName());
+		// EventAdmin eventAdmin = (EventAdmin)
+		// context.getService(eventAdminRef);
+		// log.info("eventAdmin: {}", eventAdmin);
 
 	}
 

@@ -20,7 +20,9 @@ public class HostServiceConsumer {
 			.getLogger(HostServiceConsumer.class);
 
 	static {
-		log.info("load");
+		//
+		log.info("load"); //
+		//
 	}
 
 	@Reference
