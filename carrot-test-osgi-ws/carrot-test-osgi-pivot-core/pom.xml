@@ -15,98 +15,95 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>com.carrotgarden</groupId>
-			<artifactId>carrot-test-osgi-pivot-api</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.felix</groupId>
-			<artifactId>org.apache.felix.scr.annotations</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>osgi_R4_core</artifactId>
+			<groupId>com.carrotgarden</groupId>
+			<artifactId>carrot-test-osgi-pivot-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- -->
+
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.scr.annotations</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.osgi</groupId>
-			<artifactId>osgi_R4_compendium</artifactId>
+			<artifactId>org.osgi.compendium</artifactId>
 		</dependency>
 
 	</dependencies>
 
 	<build>
 
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-			<resource>
-				<!-- also used as hack to trigger jdt manifest update -->
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/*.bxml</include>
-				</includes>
-			</resource>
-		</resources>
+		<!-- <resources> -->
+		<!-- <resource> -->
+		<!-- <directory>src/main/resources</directory> -->
+		<!-- </resource> -->
+		<!-- <resource> -->
+		<!-- <directory>src/main/java</directory> -->
+		<!-- <includes> -->
+		<!-- <include>**/*.bxml</include> -->
+		<!-- </includes> -->
+		<!-- </resource> -->
+		<!-- </resources> -->
 
 		<plugins>
 
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.apache.felix</groupId> -->
-<!-- 				<artifactId>maven-scr-plugin</artifactId> -->
-<!-- 			</plugin> -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-scr-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+			</plugin>
+
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.felix</groupId> -->
+			<!-- <artifactId>maven-scr-plugin</artifactId> -->
+			<!-- <version>1.7.1-SNAPSHOT</version> -->
+			<!-- <configuration> -->
+			<!-- <outputDirectory>./target/classes</outputDirectory> -->
+			<!-- </configuration> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <id>scr</id> -->
+			<!-- <goals> -->
+			<!-- <goal>scr</goal> -->
+			<!-- </goals> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
+
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.felix</groupId> -->
+			<!-- <artifactId>maven-bundle-plugin</artifactId> -->
+			<!-- <version>2.3.5-SNAPSHOT</version> -->
+			<!-- <extensions>true</extensions> -->
+			<!-- <configuration> -->
+			<!-- <instructions> -->
+			<!-- <Service-Component>OSGI-INF/serviceComponents.xml</Service-Component> -->
+			<!-- </instructions> -->
+			<!-- </configuration> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <id>manifest</id> -->
+			<!-- <goals> -->
+			<!-- <goal>manifest</goal> -->
+			<!-- </goals> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
 
 		</plugins>
 
 	</build>
-
-	<profiles>
-		<profile>
-			<!-- used by jdt maven builder -->
-			<id>manifest</id>
-			<build>
-				<plugins>
-
-					<plugin>
-						<groupId>org.apache.felix</groupId>
-						<artifactId>maven-bundle-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>manifest</id>
-								<phase>process-resources</phase>
-								<goals>
-									<goal>manifest</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-
-					<plugin>
-						<groupId>org.apache.felix</groupId>
-						<artifactId>maven-scr-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>scr</id>
-								<phase>process-resources</phase>
-								<goals>
-									<goal>scr</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 
 </project>

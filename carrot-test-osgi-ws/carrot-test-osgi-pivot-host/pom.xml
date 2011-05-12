@@ -56,11 +56,7 @@
 
 		<dependency>
 			<groupId>org.osgi</groupId>
-			<artifactId>osgi_R4_core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>osgi_R4_compendium</artifactId>
+			<artifactId>org.osgi.compendium</artifactId>
 		</dependency>
 
 	</dependencies>
@@ -109,34 +105,5 @@
 		</plugins>
 
 	</build>
-
-	<profiles>
-		<profile>
-			<!-- used by jdt maven builder -->
-			<id>manifest</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.felix</groupId>
-						<artifactId>maven-bundle-plugin</artifactId>
-						<extensions>true</extensions>
-						<configuration>
-							<instructions>
-							</instructions>
-						</configuration>
-						<executions>
-							<execution>
-								<id>manifest</id>
-								<phase>process-resources</phase>
-								<goals>
-									<goal>manifest</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 
 </project>

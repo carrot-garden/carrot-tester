@@ -86,13 +86,10 @@ public class MainPivot implements Application {
 		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.gogo.shell-0.8.0.jar");
 		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.gogo.command-0.8.0.jar");
 
-		// urls.add("http://search.maven.org/remotecontent?filepath=org/ops4j/pax/url/pax-url-aether/1.3.2/pax-url-aether-1.3.2.jar");
-
 		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.configadmin-1.2.8.jar");
 		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.scr-1.6.0.jar");
 		urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.eventadmin-1.2.10.jar");
 
-		// urls.add("https://oss.sonatype.org/content/repositories/snapshots/com/carrotgarden/carrot-test-osgi-pivot-core/1.0.0-SNAPSHOT/carrot-test-osgi-pivot-core-1.0.0-20110508.200318-9.jar");
 		urls.add("reference:file:../carrot-test-osgi-pivot-core/target/classes");
 
 		// urls.add("http://www.eclipsezone.com/files/jsig/bundles/HelloWorld.jar");
