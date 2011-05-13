@@ -11,7 +11,7 @@ import org.osgi.service.event.EventAdmin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.carrotgarden.api.HostService;
+import com.carrotgarden.api.host.HostService;
 
 @Component
 public class HostServiceConsumer {
@@ -28,13 +28,31 @@ public class HostServiceConsumer {
 	@Reference
 	private HostService hostService;
 
+	protected void bind(HostService hostService) {
+		this.hostService = hostService;
+	}
+
+	protected void unbind(HostService hostService) {
+		this.hostService = null;
+	}
+
 	@Reference
 	private EventAdmin eventAdmin;
+
+	protected void bind(EventAdmin eventAdmin) {
+		this.eventAdmin = eventAdmin;
+	}
+
+	protected void unbind(EventAdmin eventAdmin) {
+		this.eventAdmin = null;
+	}
+
+	//
 
 	@Activate
 	protected void activate(Map<String, String> config) {
 		log.info("ACTIVATE");
-		log.info("hostService.lookup() : {}", hostService.lookup());
+		log.info("hostService.getDisplay : {}", hostService.getHostDisplay());
 		log.info("eventAdmin : {}", eventAdmin);
 	}
 

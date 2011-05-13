@@ -12,6 +12,16 @@
 	<artifactId>carrot-test-osgi-pivot-api</artifactId>
 	<packaging>bundle</packaging>
 
+	<dependencies>
+
+		<dependency>
+			<groupId>com.carrotgarden</groupId>
+			<artifactId>pivot-wtk-skin-terra</artifactId>
+			<version>${pivotVersion}</version>
+		</dependency>
+
+	</dependencies>
+
 	<build>
 
 		<plugins>

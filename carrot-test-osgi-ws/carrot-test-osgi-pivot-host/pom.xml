@@ -5,19 +5,12 @@
 
 	<parent>
 		<groupId>com.carrotgarden</groupId>
-		<artifactId>carrot-archon</artifactId>
-		<version>1.0.20-SNAPSHOT</version>
+		<artifactId>carrot-test-osgi-ws</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>carrot-test-osgi-pivot-host</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
 	<packaging>bundle</packaging>
-
-	<properties>
-
-		<pivotVersion>2.1.0-SNAPSHOT</pivotVersion>
-
-	</properties>
 
 	<dependencies>
 
@@ -30,7 +23,12 @@
 		<dependency>
 			<groupId>com.carrotgarden</groupId>
 			<artifactId>carrot-test-osgi-pivot-api</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.carrotgarden</groupId>
+			<artifactId>pivot-wtk-skin-terra</artifactId>
 		</dependency>
 
 		<dependency>
@@ -41,23 +39,15 @@
 		<!-- -->
 
 		<dependency>
-			<groupId>com.carrotgarden</groupId>
-			<artifactId>pivot-wtk-skin-terra</artifactId>
-			<version>${pivotVersion}</version>
-		</dependency>
-
-		<!-- -->
-
-		<dependency>
 			<groupId>org.apache.felix</groupId>
 			<artifactId>org.apache.felix.scr.annotations</artifactId>
 			<optional>true</optional>
 		</dependency>
 
-		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>org.osgi.compendium</artifactId>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.osgi</groupId> -->
+		<!-- <artifactId>org.osgi.compendium</artifactId> -->
+		<!-- </dependency> -->
 
 	</dependencies>
 
@@ -77,30 +67,6 @@
 
 		<plugins>
 
-			<!-- <plugin> -->
-			<!-- <groupId>org.apache.karaf.tooling</groupId> -->
-			<!-- <artifactId>features-maven-plugin</artifactId> -->
-			<!-- <executions> -->
-			<!-- <execution> -->
-			<!-- <id>generate</id> -->
-			<!-- <phase>generate-resources</phase> -->
-			<!-- <goals> -->
-			<!-- <goal>generate-features-xml</goal> -->
-			<!-- </goals> -->
-			<!-- <configuration> -->
-			<!-- <bundles>src/main/resources/bundles.properties</bundles> -->
-			<!-- <kernelVersion>2.2.0</kernelVersion> -->
-			<!-- <outputFile>target/features.xml</outputFile> -->
-			<!-- </configuration> -->
-			<!-- </execution> -->
-			<!-- </executions> -->
-			<!-- </plugin> -->
-
-
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-scr-plugin</artifactId>
-			</plugin>
 
 		</plugins>
 

@@ -20,4 +20,67 @@
 		<module>carrot-test-osgi-pivot-app</module>
 	</modules>
 
+	<properties>
+		<pivotVersion>2.1.0-SNAPSHOT</pivotVersion>
+	</properties>
+
+	<dependencyManagement>
+
+		<dependencies>
+			<dependency>
+				<groupId>com.carrotgarden</groupId>
+				<artifactId>pivot-wtk-skin-terra</artifactId>
+				<version>${pivotVersion}</version>
+				<optional>true</optional>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement>
+
+	<build>
+
+		<plugins>
+
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-scr-plugin</artifactId>
+				<configuration>
+					<outputDirectory>./target/classes</outputDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>scr</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>scr</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Service-Component>OSGI-INF/serviceComponents.xml</Service-Component>
+					</instructions>
+				</configuration>
+				<executions>
+					<execution>
+						<id>manifest</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>manifest</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
 </project>
