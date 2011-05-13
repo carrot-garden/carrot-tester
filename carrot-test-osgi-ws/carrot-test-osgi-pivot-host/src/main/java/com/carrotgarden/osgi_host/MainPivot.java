@@ -1,5 +1,7 @@
 package com.carrotgarden.osgi_host;
 
+import java.net.URL;
+
 import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.DesktopApplicationContext;
 import org.apache.pivot.wtk.Display;
@@ -14,9 +16,21 @@ public class MainPivot extends HostServiceImpl implements Application {
 
 	public static void main(String... args) {
 
-		String[] array = new String[] { MainPivot.class.getName() };
+		DesktopApplicationContext.main(MainPivot.class, args);
 
-		DesktopApplicationContext.main(array);
+	}
+
+	private void osgiActivate() throws Exception {
+
+		String featuresRepo = properties.get("deployment.features");
+		String featuresActive = properties.get("deployment.features.names");
+
+		String[] names = featuresActive.split(",");
+
+		for (String name : names) {
+			URL featuresURL = new URL(featuresRepo);
+			osgiActivate(featuresURL, name);
+		}
 
 	}
 
@@ -35,6 +49,8 @@ public class MainPivot extends HostServiceImpl implements Application {
 		log.info("### properties : {}", properties);
 
 		osgiStartup();
+
+		osgiActivate();
 
 	}
 

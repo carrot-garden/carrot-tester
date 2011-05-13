@@ -1,0 +1,8 @@
+com.carrotgarden.api.host;version=1.0.0,
+
+org.slf4j;version=1.6.1,
+org.slf4j.impl;version=1.6.1,
+
+org.apache.pivot.wtk;version=2.1.0,
+org.apache.pivot.beans;version=2.1.0,
+
