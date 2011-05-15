@@ -7,10 +7,11 @@ import org.apache.pivot.wtk.Display;
 import org.osgi.framework.BundleContext;
 
 import com.carrotgarden.api.host.HostService;
+import com.carrotgarden.api.plugin.PluginShutdownService;
 
 @Component
 @Service
-public class HostServiceImpl extends HostFramework implements HostService {
+public class HostServiceProvider extends HostFramework implements HostService {
 
 	protected Display display;
 
@@ -32,6 +33,29 @@ public class HostServiceImpl extends HostFramework implements HostService {
 	protected void registerHostServices(BundleContext context) {
 
 		context.registerService(HostService.class.getName(), this, null);
+
+	}
+
+	protected boolean isShutdownConfirmed() {
+
+		PluginShutdownService shutdownService = getFrameworkService(PluginShutdownService.class);
+
+		if (shutdownService == null) {
+			return true;
+		}
+
+		log.info("shutdownService: {}", shutdownService);
+
+		return shutdownService.isShutdownConfirmed();
+
+	}
+
+	//
+
+	@Override
+	public <T> T loadBXML(final Class<?> reference, final String resource) {
+
+		return BxmlUtil.loadBXML(reference, resource);
 
 	}
 

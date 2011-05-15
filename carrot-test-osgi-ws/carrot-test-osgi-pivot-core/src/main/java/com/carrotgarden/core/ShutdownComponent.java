@@ -1,6 +1,8 @@
 package com.carrotgarden.core;
 
 import java.awt.EventQueue;
+import java.net.URL;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.felix.scr.annotations.Activate;
@@ -8,6 +10,8 @@ import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Deactivate;
 import org.apache.felix.scr.annotations.Modified;
 import org.apache.felix.scr.annotations.Reference;
+import org.apache.felix.scr.annotations.Service;
+import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.Window;
 import org.osgi.service.cm.ConfigurationAdmin;
@@ -16,11 +20,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.carrotgarden.api.host.HostService;
+import com.carrotgarden.api.plugin.PluginShutdownService;
 
 @Component
-public class LoginComponent {
+@Service
+public class ShutdownComponent implements PluginShutdownService {
 
-	private static Logger log = LoggerFactory.getLogger(LoginComponent.class);
+	private static Logger log = LoggerFactory
+			.getLogger(ShutdownComponent.class);
 
 	static {
 		//
@@ -68,22 +75,33 @@ public class LoginComponent {
 	@Activate
 	protected void activate(Map<String, String> config) {
 
-		log.info("ACTIVATE");
+		try {
 
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
+			log.info("ACTIVATE");
 
-				// window = Util.loadBXML(R.class, "LoginComponent.bxml");
-				window = hostService.loadBXML(R.class, "LoginComponent.bxml");
+			final Display display = hostService.getHostDisplay();
 
-				Display display = hostService.getHostDisplay();
-				window.open(display);
+			final URL url = getClass().getResource("LoginComponent.bxml");
 
-			}
-		});
+			final BXMLSerializer bxml = new BXMLSerializer();
 
-		log.info("DONE");
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						// window = (Window) bxml.readObject(url);
+						// window.open(display);
+					} catch (Exception e) {
+						log.error("", e);
+					}
+				}
+			});
+
+			log.info("DONE");
+
+		} catch (Exception e) {
+			log.error("", e);
+		}
 
 	}
 
@@ -96,7 +114,7 @@ public class LoginComponent {
 			@Override
 			public void run() {
 				try {
-					window.close();
+					// window.close();
 				} catch (Exception e) {
 					log.error("", e);
 				}
@@ -110,6 +128,30 @@ public class LoginComponent {
 	@Modified
 	protected void modified(Map<String, String> config) {
 		log.info("MODIFIED: {}", config);
+	}
+
+	// #########################
+
+	@Override
+	public boolean isShutdownConfirmed() {
+		log.info("###: {}");
+		return true; // xxx
+	}
+
+	@Override
+	public List<Vote> getVoteList() {
+		log.info("###: {}");
+		return null;
+	}
+
+	@Override
+	public void register(Vote vote) {
+		log.info("###: {}");
+	}
+
+	@Override
+	public void unregister(Vote vote) {
+		log.info("###: {}");
 	}
 
 }

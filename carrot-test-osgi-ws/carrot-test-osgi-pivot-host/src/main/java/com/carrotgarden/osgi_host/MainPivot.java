@@ -3,21 +3,14 @@ package com.carrotgarden.osgi_host;
 import java.net.URL;
 
 import org.apache.pivot.wtk.Application;
-import org.apache.pivot.wtk.DesktopApplicationContext;
 import org.apache.pivot.wtk.Display;
 
-import com.carrotgarden.impl.HostServiceImpl;
+import com.carrotgarden.impl.HostServiceProvider;
 
-public class MainPivot extends HostServiceImpl implements Application {
+public class MainPivot extends HostServiceProvider implements Application {
 
 	static {
 		log.info("load");
-	}
-
-	public static void main(String... args) {
-
-		DesktopApplicationContext.main(MainPivot.class, args);
-
 	}
 
 	private void osgiActivate() throws Exception {
@@ -50,19 +43,23 @@ public class MainPivot extends HostServiceImpl implements Application {
 
 		osgiStartup();
 
-		osgiActivate();
+		osgiActivate(); //
 
 	}
 
 	@Override
-	public boolean shutdown(boolean optional) throws Exception {
+	public boolean shutdown(boolean isOptional) throws Exception {
+
+		if (isOptional && !isShutdownConfirmed()) {
+			return true; // do not shutdown
+		}
 
 		osgiShutdown();
 
 		this.display = null;
 		this.properties = null;
 
-		log.info("### pivot shutdown");
+		log.info("### pivot shutdown; optional : {}", isOptional);
 
 		System.gc();
 

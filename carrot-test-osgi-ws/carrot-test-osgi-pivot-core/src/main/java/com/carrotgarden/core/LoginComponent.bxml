@@ -1,8 +1,196 @@
-<Window title="MainPivot" maximized="true"
-	xmlns:bxml="http://pivot.apache.org/bxml" xmlns="org.apache.pivot.wtk">
+<core:WindowExtra title="login component" maximized="false"
+	xmlns:bxml="http://pivot.apache.org/bxml" xmlns="org.apache.pivot.wtk"
+	xmlns:core="com.carrotgarden.core" xmlns:content="org.apache.pivot.wtk.content">
 
-	<Label text="Login Component"
-		styles="{font:'Arial bold 24', color:'#ff0000',
+	<BoxPane orientation="vertical"
+		styles="{padding:10, horizontalAlignment:'center', verticalAlignment:'center'}">
+
+
+		<TablePane
+			styles="{showHorizontalGridLines: true, showVerticalGridLines:true, horizontalSpacing:1, verticalSpacing:1}">
+
+			<columns>
+				<TablePane.Column width="-1" />
+				<TablePane.Column width="1*" />
+			</columns>
+
+			<TablePane.Row height="340">
+
+				<BoxPane orientation="vertical" styles="{verticalAlignment:'top', padding: 4}">
+					<Label text="Picture:" />
+					<ListButton bxml:id="listButton"
+						listData="['IMG_0725_2.jpg', 'IMG_0735_2.jpg', 'IMG_0767_2.jpg']" />
+				</BoxPane>
+
+				<ImageView bxml:id="imageView" styles="{backgroundColor:'#404040'}" />
+
+			</TablePane.Row>
+		</TablePane>
+
+
+		<Border>
+			<BoxPane styles="{padding:4, spacing:4}">
+				<Border styles="{color:10}">
+					<ScrollPane preferredWidth="80" preferredHeight="110"
+						horizontalScrollBarPolicy="fill" verticalScrollBarPolicy="fill_to_capacity">
+						<ListView bxml:id="listView" selectMode="multi"
+							listData="['One', 'Two', 'Three', 'Four', 'Five',
+                            'Six', 'Seven', 'Eight', 'Nine', 'Ten']" />
+					</ScrollPane>
+				</Border>
+				<BoxPane orientation="vertical" preferredWidth="120" styles="{fill:true}">
+					<Label text="You selected:" />
+					<Label bxml:id="selectionLabel" styles="{wrapText:true}" />
+				</BoxPane>
+			</BoxPane>
+		</Border>
+
+		<BoxPane>
+
+			<Border>
+				<CardPane bxml:id="cardPane" selectedIndex="0"
+					styles="{selectionChangeEffect:'horizontal_slide'}">
+
+					<BoxPane orientation="vertical"
+						styles="{horizontalAlignment:'center', verticalAlignment:'center'}">
+						<ImageView image="/tutorial/IMG_0735_2.jpg" />
+						<LinkButton>
+							<content:ButtonData text="Next"
+								icon="/tutorial/resultset_next.png" />
+							<buttonPressListeners>
+								function buttonPressed(button) {
+								cardPane.setSelectedIndex(1);
+								}
+                    		</buttonPressListeners>
+						</LinkButton>
+					</BoxPane>
+
+					<BoxPane orientation="vertical"
+						styles="{horizontalAlignment:'center', verticalAlignment:'center'}">
+						<ImageView image="/tutorial/IMG_0767_2.jpg" />
+						<LinkButton>
+							<content:ButtonData text="Previous"
+								icon="/tutorial/resultset_previous.png" />
+							<buttonPressListeners>
+								function buttonPressed(button) {
+								cardPane.setSelectedIndex(0);
+								}
+                    		</buttonPressListeners>
+						</LinkButton>
+					</BoxPane>
+
+				</CardPane>
+			</Border>
+
+			<TablePane
+				styles="{ showHorizontalGridLines:true, showVerticalGridLines:true, padding:4, horizontalSpacing:1, verticalSpacing:1, horizontalGridColor:10, verticalGridColor:10 }">
+
+				<columns>
+					<TablePane.Column width="-1" />
+					<TablePane.Column width="24" />
+				</columns>
+
+				<TablePane.Row height="24">
+					<BoxPane styles="{verticalAlignment:'center'}">
+						<Checkbox buttonData="Bell"
+							ButtonPressListener.buttonPressed="bellImageView.setVisible(!bellImageView.isVisible());" />
+					</BoxPane>
+					<ImageView bxml:id="bellImageView" image="/tutorial/bell.png"
+						visible="false" />
+				</TablePane.Row>
+
+				<TablePane.Row height="24">
+					<BoxPane styles="{verticalAlignment:'center'}">
+						<Checkbox buttonData="Clock"
+							ButtonPressListener.buttonPressed="clockImageView.setVisible(!clockImageView.isVisible());" />
+					</BoxPane>
+					<ImageView bxml:id="clockImageView" image="/tutorial/clock.png"
+						visible="false" />
+				</TablePane.Row>
+
+				<TablePane.Row height="24">
+					<BoxPane styles="{verticalAlignment:'center'}">
+						<Checkbox buttonData="House"
+							ButtonPressListener.buttonPressed="houseImageView.setVisible(!houseImageView.isVisible());" />
+					</BoxPane>
+					<ImageView bxml:id="houseImageView" image="/tutorial/house.png"
+						visible="false" />
+				</TablePane.Row>
+			</TablePane>
+
+		</BoxPane>
+
+		<Border>
+			<BoxPane orientation="vertical" styles="{padding:4}">
+				<bxml:define>
+					<ButtonGroup bxml:id="numbers" />
+				</bxml:define>
+				<RadioButton bxml:id="oneButton" buttonData="One"
+					buttonGroup="$numbers" selected="true" />
+				<RadioButton bxml:id="twoButton" buttonData="Two"
+					buttonGroup="$numbers" />
+				<RadioButton bxml:id="threeButton" buttonData="Three"
+					buttonGroup="$numbers" />
+				<PushButton bxml:id="selectButton" buttonData="Select" />
+			</BoxPane>
+		</Border>
+
+
+		<BoxPane
+			styles="{padding:4, horizontalAlignment:'center', verticalAlignment:'center'}">
+			<PushButton toggleButton="true">
+				<content:ButtonData text="Anchor" icon="/tutorial/anchor.png" />
+			</PushButton>
+			<PushButton toggleButton="true">
+				<content:ButtonData text="Cup" icon="/tutorial/cup.png" />
+			</PushButton>
+			<PushButton toggleButton="true">
+				<content:ButtonData text="Star" icon="/tutorial/star.png" />
+			</PushButton>
+		</BoxPane>
+
+		<Border>
+			<BoxPane
+				styles="{padding:4, horizontalAlignment:'center', verticalAlignment:'center'}">
+				<PushButton bxml:id="pushButton" buttonData="Click Me!" />
+			</BoxPane>
+		</Border>
+
+		<Label text="Login Component"
+			styles="{font:'Arial bold 24', color:'#ff0000',
             horizontalAlignment:'center', verticalAlignment:'center'}" />
 
-</Window>
+		<BoxPane
+			styles="{padding:10, horizontalAlignment:'center', verticalAlignment:'center'}">
+			<ImageView image="/clock.png" />
+			<Label text="What time is it?" />
+			<ImageView image="/clock.png" />
+			<Label text="What time is it?" />
+		</BoxPane>
+
+		<Border>
+			<ScrollPane horizontalScrollBarPolicy="fill_to_capacity"
+				verticalScrollBarPolicy="fill_to_capacity">
+				<BoxPane
+					styles="{horizontalAlignment:'center', verticalAlignment:'center'}">
+
+					<BoxPane orientation="vertical"
+						styles="{horizontalAlignment:'center', spacing:10}">
+						<ImageView image="@logo.svg" preferredWidth="64"
+							preferredHeight="64" styles="{fill:true}" />
+						<Label text="SVG" />
+					</BoxPane>
+
+					<BoxPane orientation="vertical"
+						styles="{horizontalAlignment:'center', spacing:10}">
+						<ImageView image="@logo-64x64.png" />
+						<Label text="PNG" />
+					</BoxPane>
+
+				</BoxPane>
+			</ScrollPane>
+		</Border>
+
+	</BoxPane>
+
+</core:WindowExtra>

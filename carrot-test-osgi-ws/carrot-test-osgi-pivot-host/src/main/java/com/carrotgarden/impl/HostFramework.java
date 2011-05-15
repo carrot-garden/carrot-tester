@@ -13,6 +13,7 @@ import java.util.ServiceLoader;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
+import org.osgi.framework.ServiceReference;
 import org.osgi.framework.launch.Framework;
 import org.osgi.framework.launch.FrameworkFactory;
 import org.osgi.service.startlevel.StartLevel;
@@ -112,10 +113,8 @@ public abstract class HostFramework {
 
 		registerHostServices(context);
 
-		//
-
-		Bundle[] bundlesPast = context.getBundles();
-		for (Bundle bundle : bundlesPast) {
+		Bundle[] bundlesPresent = context.getBundles();
+		for (Bundle bundle : bundlesPresent) {
 			log.info("present : {} : {}", bundle, bundle.getState());
 			if (bundle.getBundleId() == 0) {
 				continue;
@@ -124,32 +123,8 @@ public abstract class HostFramework {
 			}
 		}
 
-		//
-
-		// List<String> urls = new LinkedList<String>();
-		// urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.gogo.runtime-0.8.0.jar");
-		// urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.gogo.shell-0.8.0.jar");
-		// urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.gogo.command-0.8.0.jar");
-		// urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.configadmin-1.2.8.jar");
-		// urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.eventadmin-1.2.10.jar");
-		// urls.add("http://apache.cs.utah.edu//felix/org.apache.felix.scr-1.6.0.jar");
-		// urls.add("reference:file:../carrot-test-osgi-pivot-core/target/classes");
-
-		// List<Bundle> bundlesNext = new LinkedList<Bundle>();
-
-		// for (String url : urls) {
-		// log.info("install : {}", url);
-		// Bundle bundle = context.installBundle(url);
-		// bundlesNext.add(bundle);
-		// }
-
 		log.info("### osgi start");
 		framework.start();
-
-		// for (Bundle bundle : bundlesNext) {
-		// log.info("startup : {}", bundle);
-		// bundle.start();
-		// }
 
 	}
 
@@ -254,10 +229,30 @@ public abstract class HostFramework {
 
 	}
 
-}
+	protected <T> T getFrameworkService(Class<T> klaz) {
 
-// ServiceReference eventAdminRef = context
-// .getServiceReference(EventAdmin.class.getName());
-// EventAdmin eventAdmin = (EventAdmin)
-// context.getService(eventAdminRef);
-// log.info("eventAdmin: {}", eventAdmin);
+		if (framework == null && klaz == null) {
+			return null;
+		}
+
+		BundleContext context = framework.getBundleContext();
+
+		if (context == null) {
+			return null;
+		}
+
+		ServiceReference reference = context
+				.getServiceReference(klaz.getName());
+
+		if (reference == null) {
+			return null;
+		}
+
+		@SuppressWarnings("unchecked")
+		T service = (T) context.getService(reference);
+
+		return service;
+
+	}
+
+}

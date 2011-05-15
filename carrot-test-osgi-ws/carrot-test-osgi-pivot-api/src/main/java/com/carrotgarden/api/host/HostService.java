@@ -9,4 +9,6 @@ public interface HostService {
 
 	Map<String, String> getHostProperties();
 
+	<T> T loadBXML(Class<?> reference, String resource);
+
 }

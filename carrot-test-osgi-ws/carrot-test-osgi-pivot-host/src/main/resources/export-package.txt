@@ -1,8 +1,17 @@
 com.carrotgarden.api.host;version=1.0.0,
+com.carrotgarden.api.plugin;version=1.0.0,
 
 org.slf4j;version=1.6.1,
 org.slf4j.impl;version=1.6.1,
 
 org.apache.pivot.wtk;version=2.1.0,
+org.apache.pivot.wtk.media;version=2.1.0,
+
 org.apache.pivot.beans;version=2.1.0,
+
+org.apache.pivot.util;version=2.1.0,
+org.apache.pivot.util.concurrent;version=2.1.0,
+
+org.apache.pivot.collections;version=2.1.0,
+org.apache.pivot.collections.immutable;version=2.1.0,
 

@@ -46,7 +46,7 @@
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-scr-plugin</artifactId>
 				<configuration>
-					<outputDirectory>./target/classes</outputDirectory>
+					<outputDirectory>${project.build.directory}/classes</outputDirectory>
 				</configuration>
 				<executions>
 					<execution>
