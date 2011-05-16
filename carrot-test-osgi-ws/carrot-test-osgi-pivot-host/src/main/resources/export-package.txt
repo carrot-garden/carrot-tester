@@ -6,6 +6,8 @@ org.slf4j.impl;version=1.6.1,
 
 org.apache.pivot.wtk;version=2.1.0,
 org.apache.pivot.wtk.media;version=2.1.0,
+org.apache.pivot.wtk.content;version=2.1.0,
+org.apache.pivot.wtk.effects;version=2.1.0,
 
 org.apache.pivot.beans;version=2.1.0,
 
