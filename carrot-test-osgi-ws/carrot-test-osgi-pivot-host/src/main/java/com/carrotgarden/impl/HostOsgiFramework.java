@@ -26,7 +26,7 @@ import com.carrotgarden.osgi.feature.FeatureEntry;
 import com.carrotgarden.osgi.feature.jackson.FEATURE;
 import com.carrotgarden.osgi_host.MainPivot;
 
-public abstract class HostFramework {
+public abstract class HostOsgiFramework {
 
 	protected static final Logger log = LoggerFactory
 			.getLogger(MainPivot.class);

@@ -11,7 +11,7 @@ import com.carrotgarden.api.plugin.PluginShutdownService;
 
 @Component
 @Service
-public class HostServiceProvider extends HostFramework implements HostService {
+public class HostServiceProvider extends HostOsgiFramework implements HostService {
 
 	protected Display display;
 
