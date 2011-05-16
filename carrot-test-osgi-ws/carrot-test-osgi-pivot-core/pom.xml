@@ -20,11 +20,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>org.osgi.compendium</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>com.carrotgarden</groupId>
 			<artifactId>carrot-test-osgi-pivot-api</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
