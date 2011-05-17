@@ -1,4 +1,4 @@
-package com.carrotgarden.core;
+package com.carrotgarden.core.login;
 
 import java.net.URL;
 
@@ -15,10 +15,10 @@ import org.apache.pivot.wtk.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WindowExtra extends Window implements Bindable {
+public class LoginWindow extends Window implements Bindable {
 
 	protected static final Logger log = LoggerFactory
-			.getLogger(WindowExtra.class);
+			.getLogger(LoginWindow.class);
 
 	@Override
 	public void initialize(Map<String, Object> namespace, URL location,

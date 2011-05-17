@@ -1,4 +1,4 @@
-package com.carrotgarden.core;
+package com.carrotgarden.core.shutdown;
 
 import java.awt.EventQueue;
 import java.net.URL;

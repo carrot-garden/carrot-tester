@@ -1,4 +1,4 @@
-package com.carrotgarden.core;
+package com.carrotgarden.core.login;
 
 import java.awt.EventQueue;
 import java.util.Map;
@@ -74,8 +74,10 @@ public class LoginComponent {
 			@Override
 			public void run() {
 
-				// window = Util.loadBXML(R.class, "LoginComponent.bxml");
-				window = hostService.loadBXML(R.class, "LoginComponent.bxml");
+				// window = Util.loadBXML(LoginWindow.class,
+				// "LoginWindow.bxml");
+				window = hostService.loadBXML(LoginWindow.class,
+						"LoginWindow.bxml");
 
 				Display display = hostService.getHostDisplay();
 				window.open(display);

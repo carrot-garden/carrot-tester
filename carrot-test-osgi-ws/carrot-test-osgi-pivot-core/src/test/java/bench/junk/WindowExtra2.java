@@ -1,4 +1,4 @@
-package com.carrotgarden.core;
+package bench.junk;
 
 import java.awt.Color;
 import java.net.URL;

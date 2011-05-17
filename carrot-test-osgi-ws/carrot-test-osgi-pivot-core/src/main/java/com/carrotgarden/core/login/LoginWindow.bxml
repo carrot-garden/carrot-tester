@@ -1,6 +1,6 @@
-<core:WindowExtra title="login component" maximized="false"
+<login:LoginWindow title="login component" maximized="false"
 	xmlns:bxml="http://pivot.apache.org/bxml" xmlns="org.apache.pivot.wtk"
-	xmlns:core="com.carrotgarden.core" xmlns:content="org.apache.pivot.wtk.content"
+	xmlns:login="com.carrotgarden.core.login" xmlns:content="org.apache.pivot.wtk.content"
 	xmlns:effects="org.apache.pivot.wtk.effects">
 
 
@@ -68,4 +68,4 @@
 
 	</BoxPane>
 
-</core:WindowExtra>
+</login:LoginWindow>

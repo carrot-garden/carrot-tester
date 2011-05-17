@@ -1,4 +1,4 @@
-package com.carrotgarden.core;
+package com.carrotgarden.core.controller;
 
 import java.util.Map;
 
