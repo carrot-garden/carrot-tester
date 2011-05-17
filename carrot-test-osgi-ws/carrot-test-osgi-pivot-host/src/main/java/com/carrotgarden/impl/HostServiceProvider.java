@@ -11,7 +11,8 @@ import com.carrotgarden.api.plugin.PluginShutdownService;
 
 @Component
 @Service
-public class HostServiceProvider extends HostOsgiFramework implements HostService {
+public class HostServiceProvider extends HostOsgiFramework implements
+		HostService {
 
 	protected Display display;
 
@@ -26,7 +27,7 @@ public class HostServiceProvider extends HostOsgiFramework implements HostServic
 
 	@Override
 	public Map<String, String> getHostProperties() {
-		return null;
+		return properties;
 	}
 
 	@Override
