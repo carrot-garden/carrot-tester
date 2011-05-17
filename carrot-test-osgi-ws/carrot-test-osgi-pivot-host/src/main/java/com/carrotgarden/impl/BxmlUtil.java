@@ -10,13 +10,13 @@ public class BxmlUtil {
 
 	private static Logger log = LoggerFactory.getLogger(BxmlUtil.class);
 
-	@SuppressWarnings("unchecked")
-	public static <T> T loadBXML(final Class<?> reference, final String resource) {
+	public static Object loadBXML(final Class<?> reference,
+			final String resource) {
 
 		final Thread thread = Thread.currentThread();
 		final ClassLoader tccl = thread.getContextClassLoader();
 
-		T result = null;
+		Object result = null;
 
 		try {
 
@@ -30,7 +30,7 @@ public class BxmlUtil {
 
 			URL url = reference.getResource(resource);
 
-			result = (T) bxml.readObject(url);
+			result = bxml.readObject(url);
 
 		} catch (Exception e) {
 			log.error("", e);

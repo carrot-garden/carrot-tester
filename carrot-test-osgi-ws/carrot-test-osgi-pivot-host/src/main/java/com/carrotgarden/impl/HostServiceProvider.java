@@ -53,10 +53,11 @@ public class HostServiceProvider extends HostOsgiFramework implements
 
 	//
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T loadBXML(final Class<?> reference, final String resource) {
 
-		return BxmlUtil.loadBXML(reference, resource);
+		return (T) BxmlUtil.loadBXML(reference, resource);
 
 	}
 
