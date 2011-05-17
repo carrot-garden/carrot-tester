@@ -20,16 +20,16 @@ import org.osgi.service.startlevel.StartLevel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.carrotgarden.main.App;
 import com.carrotgarden.osgi.feature.FeatureBundle;
 import com.carrotgarden.osgi.feature.FeatureCollection;
 import com.carrotgarden.osgi.feature.FeatureEntry;
 import com.carrotgarden.osgi.feature.jackson.FEATURE;
-import com.carrotgarden.osgi_host.MainPivot;
 
 public abstract class HostOsgiFramework {
 
 	protected static final Logger log = LoggerFactory
-			.getLogger(MainPivot.class);
+			.getLogger(App.class);
 
 	private Framework framework;
 

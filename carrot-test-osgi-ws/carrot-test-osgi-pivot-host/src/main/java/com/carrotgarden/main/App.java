@@ -1,4 +1,4 @@
-package com.carrotgarden.osgi_host;
+package com.carrotgarden.main;
 
 import java.net.URL;
 
@@ -7,7 +7,7 @@ import org.apache.pivot.wtk.Display;
 
 import com.carrotgarden.impl.HostServiceProvider;
 
-public class MainPivot extends HostServiceProvider implements Application {
+public class App extends HostServiceProvider implements Application {
 
 	static {
 		log.info("load");
