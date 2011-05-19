@@ -31,7 +31,7 @@ public class CLProvider {
 	//
 
 	static {
-		setPlugin(new CLPluginTCCL());
+		plugin = new CLPluginTCCL();
 	}
 
 	//

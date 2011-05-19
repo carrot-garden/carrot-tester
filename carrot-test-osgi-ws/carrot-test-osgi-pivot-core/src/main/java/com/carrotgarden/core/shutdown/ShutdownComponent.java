@@ -19,6 +19,8 @@ import org.osgi.service.event.EventAdmin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import bench.osgi.Comp1;
+
 import com.carrotgarden.api.host.HostService;
 import com.carrotgarden.api.plugin.PluginShutdownService;
 
@@ -26,8 +28,7 @@ import com.carrotgarden.api.plugin.PluginShutdownService;
 @Service
 public class ShutdownComponent implements PluginShutdownService {
 
-	private static Logger log = LoggerFactory
-			.getLogger(ShutdownComponent.class);
+	private static Logger log = LoggerFactory.getLogger(Comp1.class);
 
 	static {
 		//
