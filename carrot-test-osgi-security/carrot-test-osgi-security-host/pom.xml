@@ -1,0 +1,124 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.carrotgarden</groupId>
+		<artifactId>carrot-test-osgi-security</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>carrot-test-osgi-security-host</artifactId>
+	<packaging>bundle</packaging>
+
+	<dependencies>
+
+		<!-- logging -->
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<optional>false</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<optional>false</optional>
+		</dependency>
+
+		<!-- platform base -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.osgi</groupId> -->
+		<!-- <artifactId>org.osgi.core</artifactId> -->
+		<!-- <version>4.2.0</version> -->
+		<!-- <scope>provided</scope> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.osgi</groupId> -->
+		<!-- <artifactId>org.osgi.compendium</artifactId> -->
+		<!-- <version>4.2.0</version> -->
+		<!-- <scope>provided</scope> -->
+		<!-- </dependency> -->
+
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.framework</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.framework.security</artifactId>
+			<version>1.4.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.carrotgarden</groupId>
+			<artifactId>carrot-osgi-feature-jackson</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- development only -->
+
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.apache.felix.scr.annotations</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<executions>
+					<execution>
+						<!-- manifest for host export org.osgi.framework.system.packages.extra -->
+						<id>manifest</id>
+						<goals>
+							<goal>manifest</goal>
+						</goals>
+						<configuration>
+							<manifestLocation>${project.build.outputDirectory}/HOST-INF</manifestLocation>
+							<instructions>
+								<_failok>true</_failok>
+								<Import-Package>!*</Import-Package>
+								<Export-Package>
+									META-INF.services,
+									org.slf4j.*,
+									org.codehaus.jackson.annotate.*,
+									org.osgi.service.permissionadmin.*,
+									org.osgi.service.condpermadmin.*,
+									</Export-Package>
+							</instructions>
+						</configuration>
+					</execution>
+					<execution>
+						<!-- manifest for actual bundle -->
+						<id>default-bundle</id>
+						<goals>
+							<goal>bundle</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
