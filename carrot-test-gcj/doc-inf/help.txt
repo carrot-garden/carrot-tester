@@ -1,0 +1,4 @@
+http://mojo.codehaus.org/maven-native/native-maven-plugin/examples/gcj.html
+
+http://gcc.gnu.org/wiki/Statically_linking_libgcj
+
