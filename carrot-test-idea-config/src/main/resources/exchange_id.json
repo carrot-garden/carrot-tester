@@ -1,0 +1,13 @@
+{
+
+	"parent_id" : "archon",
+	
+	"exchange_id" : "nasdaq",
+
+	"exchange_description" : "nasdaq exchange",
+	
+	"fraction" : 0.001,
+	
+	"version" : 2
+			
+}
