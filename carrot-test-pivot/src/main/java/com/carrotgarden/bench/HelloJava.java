@@ -1,4 +1,4 @@
-package org.apache.pivot.tutorials;
+package com.carrotgarden.bench;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,9 +16,24 @@ public class HelloJava implements Application {
 
 	private Window window = null;
 
+	private Display display;
+
 	@Override
 	public void startup(final Display display,
 			final Map<String, String> properties) {
+
+		this.display = display;
+
+		makeWindow(10);
+
+	}
+
+	void makeWindow() {
+
+		if (window != null) {
+			window.close();
+			window = null;
+		}
 
 		window = new Window();
 
@@ -39,11 +54,16 @@ public class HelloJava implements Application {
 
 	}
 
+	void makeWindow(int count) {
+
+		for (int k = 0; k < count; k++) {
+			makeWindow();
+		}
+
+	}
+
 	@Override
 	public boolean shutdown(boolean optional) {
-		if (window != null) {
-			window.close();
-		}
 
 		return false;
 	}

@@ -1,4 +1,4 @@
-package org.apache.pivot.tutorials;
+package com.carrotgarden.bench;
 
 import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.collections.Map;
