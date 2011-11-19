@@ -1,4 +1,4 @@
-package com.carrotgarden.hdf5;
+package com.carrotgarden.hdf5.tutorial;
 
 /*****************************************************************************
  * Copyright by The HDF Group.                                               *
@@ -13,6 +13,8 @@ package com.carrotgarden.hdf5;
  * If you do not have access to either file, you may request a copy from     *
  * help@hdfgroup.org.                                                        *
  ****************************************************************************/
+
+import com.carrotgarden.hdf5.JLP;
 
 import ncsa.hdf.object.FileFormat;
 import ncsa.hdf.object.h5.H5File;
@@ -33,9 +35,11 @@ import ncsa.hdf.object.h5.H5File;
 public class H5FileCreate {
 
 	// The name of the file we'll create.
-	private static String fname = "H5FileCreate.h5";
+	private static String fname = "target/H5FileCreate.h5";
 
 	public static void main(String args[]) throws Exception {
+
+		JLP.pathAdd("/usr/lib/jni");
 
 		// Retrieve an instance of the implementing class for the HDF5 format
 		FileFormat fileFormat = FileFormat
