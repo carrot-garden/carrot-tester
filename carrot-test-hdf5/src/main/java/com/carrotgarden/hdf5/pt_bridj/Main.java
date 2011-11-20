@@ -22,11 +22,14 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 
+		log("trying lib1");
 		NativeLibrary lib1 = BridJ.getNativeLibrary("hdf5");
-		log("lib=" + lib1);
+		log("lib1=" + lib1);
+		log("lib1 H5T_STD_U16LE_g=" + lib1.getSymbol("H5T_STD_U16LE_g"));
 
+		log("trying lib2");
 		NativeLibrary lib2 = BridJ.getNativeLibrary("hdf5_hl");
-		log("lib=" + lib2);
+		log("lib2=" + lib2);
 
 		JLP.pathAdd("/usr/lib/jni");
 		JLP.pathLog();
