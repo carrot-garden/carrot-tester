@@ -1,15 +1,12 @@
-package com.carrotgarden.hdf5.jna;
+package com.carrotgarden.hdf5.pt_jna;
 
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 
 /**
- * @author <a href="mailto:Johannes.Stamminger@Astrium.EADS.net">Johannes
- *         Stamminger</a>
- * @version : #5 $
  */
-public class Hdf5 {
+public class HDF5 {
 
 	static {
 		Native.register("hdf5");

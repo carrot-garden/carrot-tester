@@ -46,6 +46,7 @@ public class H5Ex_T_Compound {
 	// Compound type class includes supporting Sensor_Datatype class.
 	// The Sensor_Datatype class could be external as well.
 	private static class Sensor implements java.io.Externalizable {
+
 		static Sensor_Datatype datatypes;
 
 		int serial_no;
@@ -152,21 +153,25 @@ public class H5Ex_T_Compound {
 		byte[] dset_data = null;
 
 		// Initialize data.
+
 		object_data[0] = new Sensor();
 		object_data[0].serial_no = 1153;
 		object_data[0].location = new String("Exterior (static)");
 		object_data[0].temperature = 53.23;
 		object_data[0].pressure = 24.57;
+
 		object_data[1] = new Sensor();
 		object_data[1].serial_no = 1184;
 		object_data[1].location = new String("Intake");
 		object_data[1].temperature = 55.12;
 		object_data[1].pressure = 22.95;
+
 		object_data[2] = new Sensor();
 		object_data[2].serial_no = 1027;
 		object_data[2].location = new String("Intake manifold");
 		object_data[2].temperature = 103.55;
 		object_data[2].pressure = 31.23;
+
 		object_data[3] = new Sensor();
 		object_data[3].serial_no = 1313;
 		object_data[3].location = new String("Exhaust manifold");

@@ -1,0 +1,10 @@
+-runtime BridJ
+
+/// -library hdf5
+/// /usr/include/hdf5.h
+
+-library hdf5_hl
+/usr/include/hdf5_hl.h
+
+/// /usr/include/H5public.h
+/// /usr/include/H5PTpublic.h

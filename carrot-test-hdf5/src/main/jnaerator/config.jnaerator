@@ -1,0 +1,15 @@
+// -v
+
+-runtime BridJ
+
+-package com.carrotgarden.bridj
+
+//	-library hdf5
+//	/usr/include/H5Fpublic.h
+//	/usr/include/H5Tpublic.h
+
+-library hdf5_hl
+$(DIR)/helper.h
+/usr/include/H5PTpublic.h
+
+
