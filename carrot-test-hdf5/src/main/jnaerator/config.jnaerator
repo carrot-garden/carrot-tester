@@ -12,4 +12,10 @@
 $(DIR)/helper.h
 /usr/include/H5PTpublic.h
 
+-preferJavac
 
+-bridgeSupportOut	target/erator/bridge.out
+-choicesOut			target/erator/choices.out
+-extractionOut		target/erator/extraction.out
+-macrosOut			target/erator/macros.out
+-preprocessingOut	target/erator/preprocessing.out
