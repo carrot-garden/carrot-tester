@@ -1,0 +1,57 @@
+<project name="SQSSample" default="run" basedir=".">
+
+    <!-- base properties.  Should not be used directly.  Compose them to make
+    what you want -->
+    <property name="build.output.dir" value="${basedir}/build-output"/>
+
+    <!-- where source files are located -->
+    <property name="base.src.dir" value="${basedir}/src"/>
+
+     <!-- where dependencies (build and runtime) live -->
+    <property name="lib.dir" value="${basedir}/lib"/>
+
+    <path id="build.classpath">
+        <fileset refid="jar.fileset"/>
+    </path>
+	
+    <path id="run.classpath">
+        <path refid="build.classpath"/>
+       <pathelement location="${build.output.dir}"/>
+    </path>
+
+    <fileset id="jar.fileset" dir="${lib.dir}">
+        <include name="**/*"/>
+    </fileset>
+
+	<target name="_init">
+		<mkdir dir="${build.output.dir}"/>
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.output.dir}" failonerror="false"/>
+  	</target>
+
+	<target name="compile" depends="_init">
+		<javac srcdir="${base.src.dir}"
+               destdir="${build.output.dir}"
+               deprecation="on"  debug="on">
+			<include name="**/*.java"/>
+			<classpath>
+				<path refid="build.classpath"/>
+			</classpath>
+		</javac>
+            <copy todir="${build.output.dir}/src/amazonaws" overwrite="true">
+                <fileset dir="${base.src.dir}"/>
+    	    </copy>
+	</target>
+
+	<target name="run" depends="compile">
+	<java classname="com.amazonaws.sqs.SampleDriver"
+		 fork="true" failonerror="true">
+    <classpath>
+                <path refid="run.classpath"/>
+    </classpath>
+  </java>
+</target>
+	
+</project>
