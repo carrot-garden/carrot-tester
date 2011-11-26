@@ -15,9 +15,9 @@ import com.widen.valet.ZoneResource;
 import com.widen.valet.internal.Route53Pilot;
 import com.widen.valet.internal.Route53PilotImpl;
 
-public class ListZone {
+public class ListDNS {
 
-	static final Logger logger = LoggerFactory.getLogger(ListZone.class);
+	static final Logger logger = LoggerFactory.getLogger(ListDNS.class);
 
 	public static void main(String[] args) throws Exception {
 
@@ -42,8 +42,8 @@ public class ListZone {
 
 		//
 
-		final String AWS_ACCESS_KEY = props.getProperty("user");
-		final String AWS_SECRET_KEY = props.getProperty("pass");
+		final String AWS_ACCESS_KEY = props.getProperty("accessKey");
+		final String AWS_SECRET_KEY = props.getProperty("secretKey");
 
 		final Route53Pilot pilot = new Route53PilotImpl(AWS_ACCESS_KEY,
 				AWS_SECRET_KEY);
