@@ -65,8 +65,9 @@
 					</execution>
 				</executions>
 				<configuration>
+					<optimize>true</optimize>
 					<serverId>com.carrotgarden.aws.ssh</serverId>
-					<url>scpexe://www.carrotgarden.com/tmp/tester-upload</url>
+					<url>scpexe://builder.carrotgarden.com/var/karaf</url>
 					<fromDir>src/main/resources</fromDir>
 					<includes>**/*</includes>
 					<toDir />
