@@ -1,0 +1,19 @@
+package tutorial;
+
+option java_package = "com.example.tutorial";
+option java_outer_classname = "MessageProto";
+
+message Packet {
+
+  optional int64 time = 1;
+
+  optional float bid = 2;
+  optional float ask = 3;
+
+}
+
+message Store {
+
+  repeated Packet packet = 1;
+  
+}
