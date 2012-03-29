@@ -4,7 +4,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Random;
 
+import com.example.tutorial.MessageProto;
 import com.example.tutorial.MessageProto.Packet;
+import com.example.tutorial.MessageProto.Price.Builder;
 
 class PacketAdd {
 
@@ -18,25 +20,34 @@ class PacketAdd {
 
 		// packetMaker.setExp(-2);
 
-		packetMaker.setBid(generator.nextInt(1000000));
+		final Builder priceBid = MessageProto.Price.newBuilder();
+		priceBid.setMantissa(123);
+		priceBid.setExponent(-2);
+
+		final Builder priceAsk = MessageProto.Price.newBuilder();
+		priceAsk.setMantissa(345);
+		priceAsk.setExponent(-2);
+
+		packetMaker.setPriceBid(priceBid.build());
+		packetMaker.setPriceAsk(priceAsk.build());
 
 		// packetMaker.setGap(generator.nextInt(1000));
 
 		final Packet packet = packetMaker.build();
 
-		System.out.println("packet=\n" + packet);
-
 		return packet;
 
 	}
 
-	public static void main(String[] args0) throws Exception {
+	public static void main(final String[] args0) throws Exception {
 
 		final String name = "target/store-file.bin";
 
 		//
 
 		final Packet packetOut = make();
+
+		System.out.println("packet out=\n" + packetOut);
 
 		final FileOutputStream output = new FileOutputStream(name, true);
 
@@ -50,13 +61,13 @@ class PacketAdd {
 
 		while (true) {
 
-			final Packet packetIn = Packet.parseDelimitedFrom(input);
+			final Packet packetInp = Packet.parseDelimitedFrom(input);
 
-			if (packetIn == null) {
+			if (packetInp == null) {
 				break;
 			}
 
-			System.out.println("packetIn=\n" + packetIn);
+			System.out.println("packet inp=\n" + packetInp);
 
 		}
 

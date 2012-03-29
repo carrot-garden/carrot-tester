@@ -3,12 +3,20 @@ package tutorial;
 option java_package = "com.example.tutorial";
 option java_outer_classname = "MessageProto";
 
+message Price {
+
+  optional sint32 exponent = 1;
+  optional sint64 mantissa = 2;
+  
+}
+
+
 message Packet {
 
   optional int64 time = 1;
 
-  optional float bid = 2;
-  optional float ask = 3;
+  optional Price price_bid = 2;
+  optional Price price_ask = 3;
 
 }
 

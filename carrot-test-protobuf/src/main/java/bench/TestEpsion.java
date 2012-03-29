@@ -2,13 +2,15 @@ package bench;
 
 public class TestEpsion {
 
-	public static void main(String... args) {
+	public static void main(final String... args) {
 
-		calculateMachineEpsilonFloat();
+		calculateEpsilonFloat();
+
+		calculateEpsilonDouble();
 
 	}
 
-	static void calculateMachineEpsilonFloat() {
+	static void calculateEpsilonFloat() {
 
 		float machEps = 1.0f;
 
@@ -16,11 +18,23 @@ public class TestEpsion {
 
 			machEps /= 2.0f;
 
-			System.out.println("Calculated machine epsilon: " + machEps);
+		} while ((1.0f + (machEps / 2.0f)) != 1.0f);
 
-		} while ((float) (1.0 + (machEps / 2.0)) != 1.0);
+		System.out.println("epsilon/float : " + machEps);
 
-		System.out.println("Calculated machine epsilon: " + machEps);
+	}
+
+	static void calculateEpsilonDouble() {
+
+		double machEps = 1.0d;
+
+		do {
+
+			machEps /= 2.0d;
+
+		} while ((1.0d + (machEps / 2.0d)) != 1.0d);
+
+		System.out.println("epsilon/double : " + machEps);
 
 	}
 

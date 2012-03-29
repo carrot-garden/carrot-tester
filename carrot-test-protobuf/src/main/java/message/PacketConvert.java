@@ -16,7 +16,7 @@ import com.example.tutorial.MessageProto.Store;
 
 class PacketConvert {
 
-	static void print(Store store) {
+	static void print(final Store store) {
 
 		for (final Packet packet : store.getPacketList()) {
 
@@ -69,8 +69,8 @@ class PacketConvert {
 
 			maker.setTime(format.parseMillis(timeStr));
 
-			maker.setBid(Float.parseFloat(bidStr));
-			maker.setAsk(Float.parseFloat(askStr));
+			// maker.setBid(Float.parseFloat(bidStr));
+			// maker.setAsk(Float.parseFloat(askStr));
 
 			maker.build().writeDelimitedTo(zipOut);
 
@@ -128,7 +128,7 @@ class PacketConvert {
 
 	}
 
-	public static void main(String[] args0) throws Exception {
+	public static void main(final String[] args0) throws Exception {
 
 		convert();
 
