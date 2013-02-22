@@ -10,7 +10,7 @@
 
 	<groupId>com.carrotgarden.test</groupId>
 	<artifactId>carrot-test-release-branch</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 
 	<scm>
